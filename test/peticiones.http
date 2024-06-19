@@ -1,0 +1,62 @@
+@usersp = http://localhost:300/user/usersp
+@logIn = http://localhost:300/user/login
+@getMaterias = http://localhost:300/user/getMaterias
+@addMateria = http://localhost:300/user/addMateria
+@cursar = http://localhost:300/user/cursar
+@getMateriaById = http://localhost:300/user/getMateriaById
+
+
+
+POST {{logIn}}
+Content-Type: application/json
+
+{
+    "dni":"8",
+    "password":"12345"
+}
+
+
+### Crear usuario
+
+
+POST {{usersp}}
+Content-Type: application/json
+
+{
+    "dni":"9", 
+    "nombre":"Fabricio",
+    "password":"12345"
+}
+
+
+### Obtener materias (requiere autenticación)
+
+
+GET {{getMaterias}} 
+auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkbmkiOiI4IiwiaWF0IjoxNzE3NTI2MzY3LCJleHAiOjE3MTc1MjY0Mjd9.KfO0P-63482_W3x777tzmMwSR9hE5mKfoJAXVBdhJ-w
+
+
+### Añadir materia
+
+
+POST {{addMateria}}
+Content-Type: application/json
+
+{
+    "nombre":"Software"
+}
+
+### Relacionar usuario con materia
+
+POST {{cursar}}
+Content-Type: application/json
+
+{
+    "dni":"9", 
+    "id_m":"4"
+}
+
+### Obtener materias por DNI (requiere autenticación)
+
+GET {{getMateriaById}}/9
+auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkbmkiOiI4IiwiaWF0IjoxNzE3NTg4MTc0LCJleHAiOjE3MTc1ODgyMzR9.ZyS6qj4ALw6UyYxN9uxD_QZdFPRQHWSSiP8Oe1b7ZNY
